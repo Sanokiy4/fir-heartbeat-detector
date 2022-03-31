@@ -19,6 +19,7 @@ For heartbeat detection a matched filter is used.
 A wavelet is used as coefficients for FIR filter which greatly amplifies R-peaks (heartbeats).
 To determine best wavelet shape 3 different wavelets were tested.
 ![image](https://user-images.githubusercontent.com/78025384/161137295-43fb772f-b6b8-44a2-a493-f4a4435130eb.png)
+
 Mexican hat wavelet showed best filtering performance.
 ![image](https://user-images.githubusercontent.com/78025384/161137659-4fba5456-16f1-4cc7-8335-657098b66df7.png)
 # Heartbeat detection
