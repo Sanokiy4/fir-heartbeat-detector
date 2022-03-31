@@ -211,10 +211,12 @@ int main()
     double empty_arr[FS * SAMPLES_RATIO] = { };
     FIRfilter adaptive_filter(empty_arr, FS*SAMPLES_RATIO);
 
-
-    vector<double> filtered;
-    vector<double> r_peaks;
-    vector<float> bpms;
+    ofstream file_filtered;
+    file_filtered.open("filtered.dat", ios::out);
+    ofstream file_rpeaks;
+    file_rpeaks.open("rpeaks.dat", ios::out);
+    ofstream file_bpms;
+    file_bpms.open("bpms.dat", ios::out);
 
     //Mexican hat wavelet matched filter construction for r-peak detection
     double x_mhat[50];
@@ -235,14 +237,18 @@ int main()
         no_DC = highpass_filter.dofilter(data[i]);
         noise = sin(2 * M_PI * 50/FS * i);
         lms = adaptive_filter.doFilterAdaptive(no_DC, noise, LEARNING_RATE);
-        filtered.push_back(lms);    
+        file_filtered << lms << endl;
         rp = mhat_filter.dofilter(lms);
         rp = pow(rp, 2);
-        r_peaks.push_back(rp);
+        file_rpeaks << rp << endl;
         // Heartbeat detection
         bpm = detector.detect(rp);
-        bpms.push_back(bpm);
+        file_bpms << bpm << endl;
     }
     
+    file_filtered.close();
+    file_rpeaks.close();
+    file_bpms.close();
+
     return 0;
 }
