@@ -1,5 +1,5 @@
 # fir-heartbeat-detector
-This code is implementation of FIR, LMS and Matched filters for ECG data filtering and heartbeat detection.
+This code is implementation of FIR, LMS and Matched filters for ECG data filtering and heartbeat detection. FIR coefficients were found using inverse fast fourier transform (IFFT) with the help of [fftw](https://www.fftw.org/) library.
 ## Important files:
 - [main.cpp](fir-heartbeat-detector/main.cpp) - contains all classes and functions
 - [ecg.dat](fir-heartbeat-detector/ecg.dat) - raw ecg sample data
